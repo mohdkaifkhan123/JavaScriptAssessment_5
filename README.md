@@ -51,6 +51,26 @@ polyfillPromiseAll(arr).then((data)=>{
 })
 
 
+//Calculate count of total arrays
+const arr=[[1,2],[1,3],[[[4]]]]
+
+
+const result=[]
+let c=1;
+function polyfillFlatArray(arr){
+    arr.map((item)=>{
+        if(Array.isArray(item))
+        {
+        c++
+        polyfillFlatArray(item)
+        }
+        
+    })
+    return c
+}
+
+console.log(polyfillFlatArray(arr))
+
 
 
 
