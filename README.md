@@ -1,3 +1,28 @@
+//Composition in js
+function add(a){
+    return a+2
+}
+function subtract(a){
+    return a-3
+}
+function multiply(a){
+    return a*3
+}
+
+const compose=(...functions)=>{
+    return(args)=>{
+     return   functions.reduceRight((arg,fn)=>fn(arg),args);
+    }
+}
+
+const solve=compose(add,subtract,multiply)
+
+console.log(solve(6))
+
+
+
+
+
 //Polyfill for array flat method
 const arr=[[1,2],[1,3],[[4]]]
 
