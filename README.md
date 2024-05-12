@@ -99,6 +99,47 @@ console.log(polyfillFlatArray(arr))
 
 
 
+//React lifecycle methods
+
+import React from "react";
+class Counter extends React.Component {
+  componentDidMount() {
+    console.log("componentDidMount");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.number !== this.props.number) {
+      console.log("componentDidUpdate runs");
+    }
+  }
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+  }
+  render() {
+    return <button>{this.props.number}</button>;
+  }
+}
+export default Counter;
+import "./styles.css";
+import React from "react";
+import Counter from "./components/Counter";
+class App extends React.Component {
+  state = {
+    num: 0,
+  };
+
+  handleClick() {
+    this.setState((state) => ({ num: state.num + 1 }));
+  }
+  render() {
+    return (
+      <>
+        <button onClick={this.handleClick.bind(this)}>ldld</button>
+        <Counter number={this.state.num} />
+      </>
+    );
+  }
+}
+export default App;
 
 
 
