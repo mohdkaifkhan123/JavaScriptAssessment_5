@@ -1,3 +1,23 @@
+//Polyfill for array flat method
+const arr=[[1,2],[1,3],[[4]]]
+
+
+const result=[]
+
+function polyfillFlatArray(arr){
+    arr.forEach((item)=>{
+        if(Array.isArray(item))
+        polyfillFlatArray(item)
+        else
+        result.push(item)
+    })
+    return result
+}
+
+console.log(polyfillFlatArray(arr))
+
+
+
 //Polyfill for promise.all
 
 const d=(time)=>{
