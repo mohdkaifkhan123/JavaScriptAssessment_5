@@ -1,3 +1,31 @@
+//Make nested object flat
+const obj={
+    a:1,
+    b:10,
+    d:{
+        e:20
+    }
+}
+const object={}
+function a(obj,parent){
+    for(let key in obj){
+        let newParent=parent+key
+        let value=obj[key]
+        console.log(value)
+        if(typeof value==='object')
+        {
+        a(value,newParent+".")
+        }
+        else
+        object[newParent]=value;
+    }
+    return object
+}
+console.log(a(obj,""))
+
+
+
+
 //Composition in js
 function add(a){
     return a+2
