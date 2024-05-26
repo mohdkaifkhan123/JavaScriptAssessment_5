@@ -1,3 +1,62 @@
+//Progess bar
+import React, { useEffect, useState } from "react";
+
+const ProgressBar = () => {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress < 100) {
+          return prevProgress + 1;
+        } else {
+          clearInterval(intervalId);
+          return prevProgress;
+        }
+      });
+    }, 100); // Increase progress every 100ms
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <div
+        style={{
+          width: "500px",
+          height: "30px",
+          border: "2px solid black",
+          backgroundColor: "#e0e0e0",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            width: `${progress}%`,
+            height: "100%",
+            backgroundColor: "red",
+            transition: "width 0.1s linear",
+          }}
+        ></div>
+      </div>
+      <p>{progress}%</p>
+    </div>
+  );
+};
+
+export default ProgressBar;
+
+
+
 //Make nested object flat
 const obj={
     a:1,
